@@ -9,4 +9,4 @@ RUN pip install --no-cache-dir --upgrade -r /iris-classifier/requirements.txt
 # copy fastapi deployment app directory
 COPY app /iris-classifier/app
 # command to execute on container startup
-CMD [ "fastapi", "app/main.py", "--port", "80" ]
+CMD [ "fastapi", "app/main.py", "--port", "8080" ]
