@@ -26,17 +26,8 @@ iris_features = pd.DataFrame(data=iris_data["data"], columns=iris_data["feature_
 iris_target = pd.Series(data=iris_data["target"], name="target")
 iris_df = pd.concat([iris_features, iris_target], axis=1)
 
-# normalize column
-def normalize_column(column):
-    new_column = column.lower().strip().split(" ")
-    if len(new_column) > 1:
-        new_column = "_".join(new_column[:-1])
-    else:
-        new_column = new_column[0]
-
-    return new_column
-
-iris_df.columns = iris_df.columns.map(normalize_column)
+# normalize column names
+iris_df.columns = iris_df.columns.str.replace(" ", "_").str.lower().str.strip("_(cm)")
 
 # drop duplicated data
 iris_df = iris_df.drop_duplicates(keep="first")
